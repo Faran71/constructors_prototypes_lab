@@ -29,15 +29,36 @@ Dealership.prototype.getManufacturers = function() {
     return stockManufacturers;
 }
 
- Dealership.prototype.findCarFromManufacturer = function(manufacturerName) {
+ Dealership.prototype.findCarFrom = function(name , property) {
     stockCars = [];
     this.stock.forEach(car => {
-        if (car.getManufacturer() === manufacturerName) {
-            stockCars.push(car);
+        if(property === "Manufacturer"){
+            if (car.getManufacturer() === name) {
+                stockCars.push(car);
+            }
+        } else if(property === "Price"){
+            if(car.getPrice() <= name){
+                stockCars.push(car);
+            }
+        } else if(property === "Engine Type"){
+            if(car.getEnginetype() === name){
+                stockCars.push(car);
+            }
         }
+        
     })
     return stockCars;
  }
+
+//  Dealership.prototype.findCarFromManufacturer = function(manufacturerName) {
+//     stockCars = [];
+//     this.stock.forEach(car => {
+//         if (car.getManufacturer() === manufacturerName) {
+//             stockCars.push(car);
+//         }
+//     })
+//     return stockCars;
+//  }
 
  Dealership.prototype.totalValue = function() {
     total = 0;

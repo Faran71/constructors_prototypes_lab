@@ -1,4 +1,5 @@
 const Car = require("./Car");
+const Customer = require("./Customer");
 
 
 const Dealership = function(name, maxNumberOfCars, stock) {
@@ -7,7 +8,8 @@ const Dealership = function(name, maxNumberOfCars, stock) {
     this.stock = stock;
 }
 
-Object.setPrototypeOf(Dealership.prototype, Car.prototype)
+Object.setPrototypeOf(Dealership.prototype, [Car.prototype,Customer.prototype])
+// Object.setPrototypeOf(Dealership.prototype, Customer.prototype)
 
 Dealership.prototype.countCarsInStock = function() {
     return this.stock.length;
@@ -45,4 +47,12 @@ Dealership.prototype.getManufacturers = function() {
     return total;
  }
 
- module.exports = Dealership;
+ Dealership.prototype.sellCar = function(customer, carToBuy) {
+    customer.buyCar(carToBuy);
+    if (customer.getCar() !== null) {
+        this.stock.splice(this.stock.indexOf(carToBuy),1);
+    }
+ }
+
+
+module.exports = Dealership;

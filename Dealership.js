@@ -41,7 +41,7 @@ Dealership.prototype.getManufacturers = function() {
                 stockCars.push(car);
             }
         } else if(property === "Engine Type"){
-            if(car.getEnginetype() === name){
+            if(car.getEngineType() === name){
                 stockCars.push(car);
             }
         }
